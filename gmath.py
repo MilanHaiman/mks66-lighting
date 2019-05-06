@@ -45,7 +45,7 @@ def calculate_specular(light, sreflect, view, normal):
   normalize(normal)
   normalize(view)
   R = [2*dot_product(normal,L)*normal[i]-L[i] for i in range(3)]
-  return [I_L[i]*sreflect[i]*dot_product(R,view)**SPECULAR_EXP for i in range(3)]
+  return [I_L[i]*sreflect[i]*clamp(dot_product(R,view),0,1)**SPECULAR_EXP for i in range(3)]
 
 def limit_color(color):
   return [clamp(color[i],0,255) for i in range(3)]
